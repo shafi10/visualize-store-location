@@ -1,7 +1,7 @@
 import { Page, Layout, LegacyCard, Button } from "@shopify/polaris";
 import { TitleBar } from "@shopify/app-bridge-react";
 import { useUI } from "../contexts/ui.context";
-// import { Dashboard } from "../components";
+import { StoreLocation } from "../components/StoreLocation";
 
 export default function HomePage() {
   const { setOpenModal } = useUI();
@@ -27,7 +27,7 @@ export default function HomePage() {
                 Create Location
               </Button>
             </div>
-            {/* <CustomStatus /> */}
+            <StoreLocation />
           </LegacyCard>
         </Layout.Section>
       </Layout>
