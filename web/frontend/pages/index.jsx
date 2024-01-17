@@ -10,8 +10,22 @@ export default function HomePage() {
       <TitleBar title={"Store location information"} primaryAction={null} />
       <Layout>
         <Layout.Section>
-          <LegacyCard sectioned title={"Location list"}>
+          <LegacyCard sectioned>
             <div className="space__to_end">
+              <Button
+                primary
+                onClick={() =>
+                  setOpenModal({
+                    view: "VIEW_LOCATION",
+                    isOpen: true,
+                    data: {
+                      title: `A visual journey for store locations`,
+                    },
+                  })
+                }
+              >
+                View location map
+              </Button>
               <Button
                 primary
                 onClick={() =>

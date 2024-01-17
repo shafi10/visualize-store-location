@@ -7,6 +7,11 @@ const initialState = {
     isOpen: false,
     data: null,
   },
+  toast: {
+    active: false,
+    message: "",
+  },
+  locations: [],
 };
 
 export const UIContext = React.createContext(initialState);
@@ -19,6 +24,12 @@ function uiReducer(state, action) {
       return {
         ...state,
         shop: action.payload,
+      };
+    }
+    case "SET_LOCATION": {
+      return {
+        ...state,
+        locations: action.payload,
       };
     }
     case "OPEN_MODAL": {
@@ -43,6 +54,16 @@ function uiReducer(state, action) {
         },
       };
     }
+    case "TOGGLE_TOAST": {
+      return {
+        ...state,
+        toast: {
+          ...state.toast,
+          active: action.payload.active,
+          message: action.payload.message,
+        },
+      };
+    }
   }
 }
 
@@ -51,9 +72,14 @@ export const UIProvider = (props) => {
 
   const setShop = (payload) => dispatch({ type: "SET_SHOP", payload });
 
+  const setLocations = (payload) => dispatch({ type: "SET_LOCATION", payload });
+
   const setOpenModal = (payload) => dispatch({ type: "OPEN_MODAL", payload });
 
   const setCloseModal = () => dispatch({ type: "CLOSE_MODAL" });
+
+  const setToggleToast = (payload) =>
+    dispatch({ type: "TOGGLE_TOAST", payload });
 
   const value = React.useMemo(
     () => ({
@@ -61,6 +87,8 @@ export const UIProvider = (props) => {
       setShop,
       setOpenModal,
       setCloseModal,
+      setToggleToast,
+      setLocations,
     }),
     [state]
   );

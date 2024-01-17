@@ -1,6 +1,6 @@
 import { useAuthenticatedFetch } from "./useAuthenticatedFetch";
 import { useMemo } from "react";
-import { useQuery, useMutation } from "react-query";
+import { useQuery, useMutation, useQueryClient } from "react-query";
 import { useUI } from "../contexts/ui.context";
 
 export const useStoreLocation = ({
@@ -9,6 +9,7 @@ export const useStoreLocation = ({
   reactQueryOptions,
 }) => {
   const authenticatedFetch = useAuthenticatedFetch();
+  const { setLocations } = useUI();
   const fetch = useMemo(() => {
     return async () => {
       const response = await authenticatedFetch(url, fetchInit);
@@ -16,51 +17,49 @@ export const useStoreLocation = ({
     };
   }, [url, JSON.stringify(fetchInit)]);
 
-  return useQuery(url, fetch, {
+  return useQuery("store-location", fetch, {
     ...reactQueryOptions,
-    onSuccess: (data) => {},
+    onSuccess: async (data) => {
+      setLocations(data);
+    },
     refetchOnWindowFocus: false,
     // enabled: customStatus.length === 0,
   });
 };
 
-// export const useCreateCustomStatus = () => {
-//   const { t } = useTranslation();
-//   const fetch = useAuthenticatedFetch();
-//   const { setCustomStatus, customStatus, setCloseModal, setToggleToast } =
-//     useUI();
+export const useCreateStoreLocation = () => {
+  const fetch = useAuthenticatedFetch();
+  const { setCloseModal, setToggleToast, setLocations } = useUI();
+  const queryClient = useQueryClient();
+  async function createLocation(location) {
+    return await fetch("/api/location-create", {
+      method: "POST",
+      body: JSON.stringify(location),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+  }
 
-//   async function createStatus(status) {
-//     return await fetch("/api/createstatus", {
-//       method: "POST",
-//       body: JSON.stringify(status),
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//     });
-//   }
-
-//   return useMutation((status) => createStatus(status), {
-//     onSuccess: async (data) => {
-//       if (data.status === 500) {
-//         setToggleToast({
-//           active: true,
-//           message: `${t("errors.error_status")}`,
-//         });
-//       } else {
-//         const res = await data.json();
-//         const statusInfo = [res?.response, ...customStatus];
-//         setCustomStatus(statusInfo);
-//         setCloseModal();
-//         setToggleToast({
-//           active: true,
-//           message: `${t("success.status_created")}`,
-//         });
-//       }
-//     },
-//     refetchOnWindowFocus: false,
-//   });
-// };
+  return useMutation((location) => createLocation(location), {
+    onSuccess: async (data) => {
+      if (data.status === 500) {
+        setToggleToast({
+          active: true,
+          message: "Something went wrong",
+        });
+      } else {
+        queryClient.invalidateQueries("store-location");
+        setCloseModal();
+        setToggleToast({
+          active: true,
+          message: `Location created successfully`,
+        });
+      }
+    },
+    refetchOnWindowFocus: false,
+  });
+};
 
 // export const useUpdateCustomStatus = () => {
 //   const { t } = useTranslation();

@@ -1,21 +1,23 @@
 import React, { useCallback, useEffect, useState } from "react";
-// import { useCreateCustomStatus, useUpdateCustomStatus } from "../../hooks";
 import { FormLayout, Button, Form } from "@shopify/polaris";
 import { useUI } from "../../contexts/ui.context";
 import { InputField } from "../ui/InputField";
+import { useCreateStoreLocation } from "../../hooks/useStoreLocation";
 
 export function CreateStore() {
-  const { shop, modal } = useUI();
-  // const { mutate: createStatus, isError } = useCreateCustomStatus();
+  const { modal } = useUI();
+  const { mutate: createLocation, isError } = useCreateStoreLocation();
   // const { mutate: updateStatus, isError: isEditError } =
   //   useUpdateCustomStatus();
   const [formData, setFormData] = useState({
+    title: "",
     latitude: "",
     longitude: "",
     othersInfo: "",
   });
 
   const [errors, setErrors] = useState({
+    title: "",
     latitude: "",
     longitude: "",
     othersInfo: "",
@@ -33,24 +35,24 @@ export function CreateStore() {
     if (obj?.title === "" || obj?.title?.length <= 3) {
       return setErrors({
         ...errors,
-        title: `${t("form.create_status_required")}`,
+        title: "Location title is required",
       });
-    } else if (obj?.categoryId === "") {
+    } else if (obj?.latitude === "") {
       return setErrors({
         ...errors,
-        categoryId: `${t("form.category_required")}`,
+        latitude: "Location latitude is required",
+      });
+    } else if (obj?.longitude === "") {
+      return setErrors({
+        ...errors,
+        longitude: "Location longitude is required",
       });
     }
 
     if (statusId) {
       // updateStatus(obj);
     } else {
-      const newObj = {
-        ...obj,
-        shopDomain: shop?.myshopify_domain,
-        shopId: shop?.id,
-      };
-      // createStatus(newObj);
+      createLocation(obj);
     }
   }, []);
 
@@ -61,11 +63,18 @@ export function CreateStore() {
 
   return (
     <>
-      {/* {(isError || isEditError) && (
-        <InlineError message={t("errors.something_wrong")} />
-      )} */}
+      {isError && <InlineError message={"Something went wrong"} />}
       <Form onSubmit={() => handleSubmit(formData)}>
         <FormLayout>
+          <InputField
+            value={formData?.title}
+            onChange={handleChange}
+            label={"Enter location title"}
+            type="text"
+            name="title"
+            placeholder={"Location title"}
+            error={errors?.title}
+          />
           <InputField
             value={formData?.latitude}
             onChange={handleChange}

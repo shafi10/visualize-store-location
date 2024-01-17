@@ -11,14 +11,14 @@ import { useStoreLocation } from "../hooks/useStoreLocation";
 import { IndexTableData } from "./ui/IndexTable";
 
 export function StoreLocation() {
-  const { isLoading, data } = useStoreLocation({
-    url: "/api/customstatus",
+  const { isLoading } = useStoreLocation({
+    url: "/api/location-list",
   });
 
-  const { setOpenModal } = useUI();
+  const { setOpenModal, locations } = useUI();
 
   const rowMarkup =
-    data?.map((info, index) => (
+    locations?.map((info, index) => (
       <IndexTable.Row id={index} key={index} position={index}>
         <IndexTable.Cell>
           <Text variant="bodyMd" fontWeight="bold" as="span">
@@ -27,39 +27,47 @@ export function StoreLocation() {
         </IndexTable.Cell>
         <IndexTable.Cell>
           <Text alignment="center" as="span">
-            {/* <Icons info={info} /> */}
+            {info?.latitude}
           </Text>
+        </IndexTable.Cell>
+        <IndexTable.Cell>
+          <Text alignment="center" as="span">
+            {info?.longitude}
+          </Text>
+        </IndexTable.Cell>
+        <IndexTable.Cell>
+          <Text as="span">{info?.othersInfo}</Text>
         </IndexTable.Cell>
         <IndexTable.Cell>
           <Text alignment="end" as="span">
             <HorizontalStack gap="4" align="end">
               <div
                 className="cursor_pointer"
-                onClick={() =>
-                  setOpenModal({
-                    view: "DELETE_STATUS",
-                    isOpen: true,
-                    data: {
-                      title: info?.title,
-                      id: info?.id,
-                    },
-                  })
-                }
+                // onClick={() =>
+                //   setOpenModal({
+                //     view: "DELETE_STATUS",
+                //     isOpen: true,
+                //     data: {
+                //       title: info?.title,
+                //       id: info?.id,
+                //     },
+                //   })
+                // }
               >
                 <Icon source={DeleteMajor} color="critical" />
               </div>
               <div
                 className="cursor_pointer"
-                onClick={() =>
-                  setOpenModal({
-                    view: "CREATE_STATUS",
-                    isOpen: true,
-                    data: {
-                      title: `Update Location Information`,
-                      status: info,
-                    },
-                  })
-                }
+                // onClick={() =>
+                //   setOpenModal({
+                //     view: "CREATE_STATUS",
+                //     isOpen: true,
+                //     data: {
+                //       title: `Update Location Information`,
+                //       status: info,
+                //     },
+                //   })
+                // }
               >
                 <Icon source={EditMajor} color="highlight" />
               </div>
@@ -70,10 +78,11 @@ export function StoreLocation() {
     )) || [];
 
   const headings = [
-    { title: "Location Title" },
+    { title: "Location" },
     { title: "Latitude", alignment: "center" },
     { title: "longitude", alignment: "center" },
     { title: "Others Information" },
+    { title: "Actions", alignment: "end" },
   ];
 
   const resourceName = {

@@ -10,6 +10,7 @@ import {
 } from "./components";
 import { ManagedUIContext } from "./contexts/ui.context";
 import { ModalArea } from "./components/ui/Modal";
+import { ToastContainer } from "./components/ui/Toast";
 
 export default function App() {
   // Any .tsx or .jsx files in /pages will become a route
@@ -32,6 +33,7 @@ export default function App() {
               /> */}
               <Routes pages={pages} />
               <ModalArea />
+              <ToastContainer />
             </QueryProvider>
           </AppBridgeProvider>
         </BrowserRouter>
