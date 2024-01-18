@@ -11,13 +11,10 @@ export const LocationComponent = () => {
     <div className="">
       <MapContainer
         center={[37.09024, -95.712891]}
-        zoom={2}
+        zoom={1}
         style={{ height: "300px" }}
       >
-        <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
+        <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 
         {locations?.map((item, index) => (
           <Marker
