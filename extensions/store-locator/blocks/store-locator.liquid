@@ -1,0 +1,25 @@
+
+
+{% assign locationlist = shop.metafields.bs_store_location.bs_store_location_items.value %}
+
+<div class="bs-location-container">
+{%- if block.settings.location_title != blank -%}
+ <div class="bs-store-location-title">{{ block.settings.location_title }}</div>
+{%- endif -%}
+<div class="bs-store-locator-container" id="bs-store-locator-map" data-info={{ locationlist | json }}></div>
+</div>
+
+{% schema %}
+{
+  "name": "Store Locator",
+  "stylesheet": "style.css",
+  "javascript": "location.js",
+  "target": "section",
+  "settings": [{
+        "type": "text",
+        "id": "location_title",
+        "label": "Enter location title"
+      }]
+}
+{% endschema %}
+

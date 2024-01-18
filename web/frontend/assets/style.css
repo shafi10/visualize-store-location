@@ -24,3 +24,7 @@
   justify-content: end;
   align-items: end;
 }
+
+.cursor_pointer {
+  cursor: pointer;
+}

@@ -43,16 +43,16 @@ export function StoreLocation() {
             <HorizontalStack gap="4" align="end">
               <div
                 className="cursor_pointer"
-                // onClick={() =>
-                //   setOpenModal({
-                //     view: "DELETE_STATUS",
-                //     isOpen: true,
-                //     data: {
-                //       title: info?.title,
-                //       id: info?.id,
-                //     },
-                //   })
-                // }
+                onClick={() =>
+                  setOpenModal({
+                    view: "DELETE_LOCATION",
+                    isOpen: true,
+                    data: {
+                      title: info?.title,
+                      id: info?.id,
+                    },
+                  })
+                }
               >
                 <Icon source={DeleteMajor} color="critical" />
               </div>
@@ -81,7 +81,7 @@ export function StoreLocation() {
     { title: "Location" },
     { title: "Latitude", alignment: "center" },
     { title: "longitude", alignment: "center" },
-    { title: "Others Information" },
+    { title: "Map Information" },
     { title: "Actions", alignment: "end" },
   ];
 

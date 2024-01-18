@@ -96,10 +96,10 @@ export function CreateStore() {
           <InputField
             value={formData?.othersInfo}
             onChange={handleChange}
-            label={"Enter location others information"}
+            label={"Enter location map information"}
             type="text"
             name="othersInfo"
-            placeholder={"Location others information"}
+            placeholder={"Location map information"}
             error={errors?.othersInfo}
           />
           <Button primary submit>

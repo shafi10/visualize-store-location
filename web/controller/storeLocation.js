@@ -1,4 +1,5 @@
 import shopify from "../shopify.js";
+import { v4 as uuidv4 } from "uuid";
 
 export const getAllStoreLocation = async (req, res) => {
   try {
@@ -16,9 +17,13 @@ export const getAllStoreLocation = async (req, res) => {
 
 export const createStoreLocation = async (req, res) => {
   try {
+    const locationBody = {
+      id: uuidv4(),
+      ...req.body,
+    };
     const locationList = await getLocationList(req, res);
 
-    const locationObj = [req.body, ...locationList];
+    const locationObj = [locationBody, ...locationList];
     const metafield = new shopify.api.rest.Metafield({
       session: res.locals.shopify.session,
     });
