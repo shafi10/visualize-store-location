@@ -58,16 +58,16 @@ export function StoreLocation() {
               </div>
               <div
                 className="cursor_pointer"
-                // onClick={() =>
-                //   setOpenModal({
-                //     view: "CREATE_STATUS",
-                //     isOpen: true,
-                //     data: {
-                //       title: `Update Location Information`,
-                //       status: info,
-                //     },
-                //   })
-                // }
+                onClick={() =>
+                  setOpenModal({
+                    view: "CREATE_STORE",
+                    isOpen: true,
+                    data: {
+                      title: `Update Location Information`,
+                      status: info,
+                    },
+                  })
+                }
               >
                 <Icon source={EditMajor} color="highlight" />
               </div>

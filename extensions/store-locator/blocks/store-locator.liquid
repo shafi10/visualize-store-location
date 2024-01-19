@@ -6,8 +6,12 @@
 {%- if block.settings.location_title != blank -%}
  <div class="bs-store-location-title">{{ block.settings.location_title }}</div>
 {%- endif -%}
-<div class="bs-store-locator-container" id="bs-store-locator-map" data-info={{ locationlist | json }}></div>
+<div class="bs-store-locator-container" id="bs-store-locator-map"></div>
 </div>
+
+<script>
+  var bsstorelocations = {{ locationlist | json }};
+</script>
 
 {% schema %}
 {

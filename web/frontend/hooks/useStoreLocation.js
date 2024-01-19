@@ -61,71 +61,67 @@ export const useCreateStoreLocation = () => {
   });
 };
 
-// export const useUpdateCustomStatus = () => {
-//   const { t } = useTranslation();
-//   const fetch = useAuthenticatedFetch();
-//   const { setCustomStatus, customStatus, setCloseModal, setToggleToast } =
-//     useUI();
+export const useUpdateStoreLocations = () => {
+  const fetch = useAuthenticatedFetch();
+  const queryClient = useQueryClient();
+  const { setCloseModal, setToggleToast } = useUI();
 
-//   async function updateStatus(status) {
-//     return await fetch(`/api/updatestatus/${status?.id}`, {
-//       method: "PATCH",
-//       body: JSON.stringify(status),
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//     });
-//   }
+  async function updateLocation(status) {
+    return await fetch(`/api/location-update/${status?.id}`, {
+      method: "PUT",
+      body: JSON.stringify(status),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+  }
 
-//   return useMutation((status) => updateStatus(status), {
-//     onSuccess: async (data, status) => {
-//       if (data.status === 500) {
-//         setToggleToast({
-//           active: true,
-//           message: `${t("errors.error_status")}`,
-//         });
-//       } else {
-//         const statusInfo = replaceNewStatus(customStatus, status);
-//         setCustomStatus(statusInfo);
-//         setCloseModal();
-//         setToggleToast({
-//           active: true,
-//           message: `${t("success.status_update")}`,
-//         });
-//       }
-//     },
-//     refetchOnWindowFocus: false,
-//   });
-// };
+  return useMutation((status) => updateLocation(status), {
+    onSuccess: async (data, status) => {
+      if (data.status === 500) {
+        setToggleToast({
+          active: true,
+          message: `Something went wrong`,
+        });
+      } else {
+        queryClient.invalidateQueries("store-location");
+        setCloseModal();
+        setToggleToast({
+          active: true,
+          message: `Location successfully updated`,
+        });
+      }
+    },
+    refetchOnWindowFocus: false,
+  });
+};
 
-// export const useDeleteCustomStatus = () => {
-//   const { t } = useTranslation();
-//   const fetch = useAuthenticatedFetch();
-//   const { setCustomStatus, customStatus, setToggleToast, setCloseModal } =
-//     useUI();
+export const useDeleteCustomStatus = () => {
+  const fetch = useAuthenticatedFetch();
+  const { setToggleToast, setCloseModal, locations, setLocations } = useUI();
 
-//   async function deleteStatus(id) {
-//     return await fetch(`/api/customstatus/${id}`, {
-//       method: "DELETE",
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//     });
-//   }
+  async function deleteLocation(id) {
+    return await fetch(`/api/location-delete/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+  }
 
-//   return useMutation((id) => deleteStatus(id), {
-//     onSuccess: (data, id) => {
-//       const statusInfo = customStatus.filter((info) => info.id !== id);
-//       setCustomStatus(statusInfo);
-//       setCloseModal();
-//       setToggleToast({
-//         active: true,
-//         message: `${t("success.status_delete")}`,
-//       });
-//     },
-//     refetchOnWindowFocus: false,
-//   });
-// };
+  return useMutation((id) => deleteLocation(id), {
+    onSuccess: (data, id) => {
+      const updatedLocations = locations.filter((info) => info.id !== id);
+      setLocations(updatedLocations);
+      setCloseModal();
+      setToggleToast({
+        active: true,
+        message: `Location deleted successfully`,
+      });
+    },
+    refetchOnWindowFocus: false,
+  });
+};
 
 // function replaceNewStatus(statusList, status) {
 //   const index = statusList.findIndex((item) => item?.id === status?.id);

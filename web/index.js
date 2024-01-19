@@ -7,7 +7,9 @@ import shopify from "./shopify.js";
 import GDPRWebhookHandlers from "./gdpr.js";
 import {
   createStoreLocation,
+  deleteStoreLocation,
   getAllStoreLocation,
+  updateStoreLocation,
 } from "./controller/storeLocation.js";
 
 const PORT = parseInt(
@@ -58,6 +60,8 @@ app.get("/api/shop", async (_req, res) => {
 
 app.get("/api/location-list", getAllStoreLocation);
 app.post("/api/location-create", createStoreLocation);
+app.delete("/api/location-delete/:id", deleteStoreLocation);
+app.put("/api/location-update/:id", updateStoreLocation);
 
 app.use(shopify.cspHeaders());
 app.use(serveStatic(STATIC_PATH, { index: false }));

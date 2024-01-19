@@ -2,13 +2,16 @@ import React, { useCallback, useEffect, useState } from "react";
 import { FormLayout, Button, Form } from "@shopify/polaris";
 import { useUI } from "../../contexts/ui.context";
 import { InputField } from "../ui/InputField";
-import { useCreateStoreLocation } from "../../hooks/useStoreLocation";
+import {
+  useCreateStoreLocation,
+  useUpdateStoreLocations,
+} from "../../hooks/useStoreLocation";
 
 export function CreateStore() {
   const { modal } = useUI();
   const { mutate: createLocation, isError } = useCreateStoreLocation();
-  // const { mutate: updateStatus, isError: isEditError } =
-  //   useUpdateCustomStatus();
+  const { mutate: updateLocation, isError: isEditError } =
+    useUpdateStoreLocations();
   const [formData, setFormData] = useState({
     title: "",
     latitude: "",
@@ -50,7 +53,7 @@ export function CreateStore() {
     }
 
     if (statusId) {
-      // updateStatus(obj);
+      updateLocation(obj);
     } else {
       createLocation(obj);
     }
