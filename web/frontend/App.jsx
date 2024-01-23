@@ -1,5 +1,5 @@
 import { BrowserRouter } from "react-router-dom";
-// import { NavigationMenu } from "@shopify/app-bridge-react";
+import { NavigationMenu } from "@shopify/app-bridge-react";
 import Routes from "./Routes";
 import "./assets/style.css";
 
@@ -23,14 +23,14 @@ export default function App() {
         <BrowserRouter>
           <AppBridgeProvider>
             <QueryProvider>
-              {/* <NavigationMenu
+              <NavigationMenu
                 navigationLinks={[
                   {
-                    label: "Page name",
-                    destination: "/pagename",
+                    label: "Documentation",
+                    destination: "/document",
                   },
                 ]}
-              /> */}
+              />
               <Routes pages={pages} />
               <ModalArea />
               <ToastContainer />

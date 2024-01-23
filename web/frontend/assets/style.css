@@ -28,3 +28,8 @@
 .cursor_pointer {
   cursor: pointer;
 }
+
+.link-copy-pasting {
+  display: flex;
+  flex-direction: column;
+}
