@@ -10,7 +10,7 @@ import {
   getAllStoreLocation,
   updateStoreLocation,
 } from "./controller/storeLocation.js";
-import { findBlockByType } from "./utils.js";
+// import { findBlockByType } from "./utils.js";
 
 const PORT = parseInt(
   process.env.BACKEND_PORT || process.env.PORT || "3000",
@@ -50,7 +50,7 @@ app.get("/api/shop", async (_req, res) => {
     session: res.locals.shopify.session,
   });
 
-  // theme info
+  //theme info
   // const themeInfo = await shopify.api.rest.Theme.all({
   //   session: res.locals.shopify.session,
   // });
@@ -59,7 +59,7 @@ app.get("/api/shop", async (_req, res) => {
   // const assetsInfo = await shopify.api.rest.Asset.all({
   //   session: res.locals.shopify.session,
   //   theme_id: mainTheme.id,
-  //   asset: { key: "templates/product.json" },
+  //   asset: { key: "templates/index.json" },
   // });
   // const appInfo = JSON.parse(assetsInfo?.data[0]?.value);
   // const isActive = findBlockByType(
@@ -72,7 +72,7 @@ app.get("/api/shop", async (_req, res) => {
     email: response.data[0]?.email,
     currencyCode: response.data[0]?.currency,
     domain: response?.data[0]?.domain,
-    // assetsInfo: isActive,
+    // assetsInfo: appInfo,
   };
 
   res.status(200).send(shop);
@@ -102,8 +102,10 @@ app.listen(PORT);
 //     });
 //     script_tag.event = "onload";
 //     script_tag.src = "https://unpkg.com/leaflet/dist/leaflet.js";
-//     script_tag.display_scope = "online_store";
+//     script_tag.display_scope = "all";
 //     script_tag.cache = true;
+//     script_tag.defer = "defer";
+
 //     await script_tag.save({
 //       update: true,
 //     });

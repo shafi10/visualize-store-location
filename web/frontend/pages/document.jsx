@@ -5,13 +5,31 @@ import {
   Text,
   ExceptionList,
   VerticalStack,
+  Button,
 } from "@shopify/polaris";
+import { useShopQuery } from "../hooks";
 // import { NoteIcon } from "@shopify/polaris-icons";
 
 export default function Documentation() {
+  const { data: shopData } = useShopQuery({
+    url: "/api/shop",
+  });
+
   return (
     <Page title="Documentation" fullWidth>
       <Layout>
+        <Layout.Section>
+          <Button
+            primary
+            onClick={() => {
+              const urlToOpen = `https://${shopData?.domain}/admin/themes/current/editor?
+            addAppBlockId=746b8e04-a3e1-466d-9892-b16e17e619b7/store-locator`;
+              window.open(urlToOpen, "_blank");
+            }}
+          >
+            Activate app block
+          </Button>
+        </Layout.Section>
         <Layout.Section>
           <Banner title="Important">
             <Text variant="headingLg" as="h5">
@@ -21,14 +39,9 @@ export default function Documentation() {
             <br />
             <VerticalStack gap="3">
               <Text variant="headingLg" as="h5" color="critical">
-                Copy this link, script and follow the steps:
+                Copy this script and follow the steps:
               </Text>
               <div className="link-copy-pasting">
-                <code>
-                  &lt;link rel="stylesheet"
-                  href="https://unpkg.com/leaflet/dist/leaflet.css"&gt;
-                </code>
-
                 <code>
                   &lt;script src="https://unpkg.com/leaflet/dist/leaflet.js"
                   defer="defer"&gt;&lt;/script&gt;
