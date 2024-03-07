@@ -1045,6 +1045,13 @@
     estree-walker "^2.0.1"
     picomatch "^2.2.2"
 
+"@shopify/admin-api-client@^0.2.8":
+  version "0.2.8"
+  resolved "https://registry.yarnpkg.com/@shopify/admin-api-client/-/admin-api-client-0.2.8.tgz#c8d053a0a5a48fde36c8b0907591c2ea26fd9a76"
+  integrity sha512-UyGhssHLw8Cwl7ai9SFtiZj0A78Ldt0qKotKg7r95mNTfKLao01oVjJFOZCZfFK+1x7ePUdh+UD+pbsb17KshA==
+  dependencies:
+    "@shopify/graphql-client" "^0.10.3"
+
 "@shopify/app-bridge-core@1.0.2":
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/@shopify/app-bridge-core/-/app-bridge-core-1.0.2.tgz#083835998082c1577f30c34224ab0750d9bee204"
@@ -1193,6 +1200,11 @@
     cachedir "^2.3.0"
     node-fetch "^3.2.10"
 
+"@shopify/graphql-client@^0.10.3":
+  version "0.10.3"
+  resolved "https://registry.yarnpkg.com/@shopify/graphql-client/-/graphql-client-0.10.3.tgz#9f58dd00e7a25ec629a6e285dad5d1253b3db52a"
+  integrity sha512-w9noa5wbuyQegOdmqR5Yfj0GQJKmwuDiqIzDETgZhTMcmV45CNxVRxCWx6BQt3MpLzgk0A8G9iaoppfHXzkhfA==
+
 "@shopify/network@^3.2.1":
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/@shopify/network/-/network-3.2.1.tgz#c51590bb9ccd177bb7a35c2bad482233198d215b"
@@ -1270,38 +1282,37 @@
     react-fast-compare "^3.2.0"
     react-transition-group "^4.4.2"
 
-"@shopify/shopify-api@^7.1.0":
-  version "7.2.0"
-  resolved "https://registry.yarnpkg.com/@shopify/shopify-api/-/shopify-api-7.2.0.tgz#eccedbff93b1d1ff9a466ab709340853d6eae8c6"
-  integrity sha512-mjdVYIVw5Ko8y5yqT7gHtw2vnT4aOavPp3Ju0r8rhg4V314T0gMKtuPn8OJ1lljjtZnR8vxpyEOBFLJanfyODQ==
+"@shopify/shopify-api@^9.3.2":
+  version "9.5.0"
+  resolved "https://registry.yarnpkg.com/@shopify/shopify-api/-/shopify-api-9.5.0.tgz#ec015dd672380d7c401c14b68eaa87975bd7cdd7"
+  integrity sha512-DqfkeHJn3uch3ujSzku9R2Q3rsCtW7QHbyPHIahORQsQVKj+YAhkDjw1V+pMQRTbveL2HHW6D2r8GQvEPOU2Gw==
   dependencies:
+    "@shopify/admin-api-client" "^0.2.8"
     "@shopify/network" "^3.2.1"
-    compare-versions "^5.0.3"
-    isbot "^3.6.10"
-    jose "^4.9.1"
+    "@shopify/storefront-api-client" "^0.3.3"
+    compare-versions "^6.1.0"
+    isbot "^4.4.0"
+    jose "^5.2.2"
     node-fetch "^2.6.1"
     tslib "^2.0.3"
     uuid "^9.0.0"
 
-"@shopify/shopify-app-express@^2.1.1":
-  version "2.1.2"
-  resolved "https://registry.yarnpkg.com/@shopify/shopify-app-express/-/shopify-app-express-2.1.2.tgz#15aa472b669b1b1693799c6c62b186cd1d16c75b"
-  integrity sha512-fi/BkUwE+TrsB09ya7zsbsxv28VgVCnVQ067kQgj7Vvqcf/Q+OvXJniW+K/uOf9q0ACxam2zc6Cnm/ZR9KavMQ==
+"@shopify/shopify-app-express@^4.1.2":
+  version "4.1.2"
+  resolved "https://registry.yarnpkg.com/@shopify/shopify-app-express/-/shopify-app-express-4.1.2.tgz#71bceb7c373cdbcfa5042010b22ede8c016bc06b"
+  integrity sha512-RnPmG3KOcWPGe58fk019s3MjClqiF5/jjagZ0ZusnwUFTXfD/9qk7iEcz7mfPoOwYgOxBVSI3iC3rtcYXvIUGg==
   dependencies:
-    "@shopify/shopify-api" "^7.1.0"
-    "@shopify/shopify-app-session-storage" "^1.1.3"
-    "@shopify/shopify-app-session-storage-memory" "^1.0.6"
+    "@shopify/shopify-api" "^9.3.2"
+    "@shopify/shopify-app-session-storage" "^2.1.1"
+    "@shopify/shopify-app-session-storage-memory" "^3.0.1"
     cookie-parser "^1.4.6"
     express "^4.18.1"
-    semver "^7.5.1"
-    tslib "^2.4.0"
+    semver "^7.6.0"
 
-"@shopify/shopify-app-session-storage-memory@^1.0.6":
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/@shopify/shopify-app-session-storage-memory/-/shopify-app-session-storage-memory-1.0.6.tgz#fe0cca553b7d167699511955e8766e5867394974"
-  integrity sha512-jGQVE2uh3dlFBWo4ni/wlp3Ev9yF8w95yafVO71RzG48Vw/b+w/I5AOQB0vsEMBmpLhAJLjTq0sB1iDf2RnBwQ==
-  dependencies:
-    tslib "^2.4.0"
+"@shopify/shopify-app-session-storage-memory@^3.0.1":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@shopify/shopify-app-session-storage-memory/-/shopify-app-session-storage-memory-3.0.1.tgz#b00e1d6954661e7daba8f9260e6b479d8694eafc"
+  integrity sha512-GbyIaUpY+SlP7CQI89C+SGuqXS/UtErjXYGv+KX8Jp8ghYkWGH5Jp8vHHxNHyOLkygJlCuHgsXD5ogKtFFqZgw==
 
 "@shopify/shopify-app-session-storage-sqlite@^1.2.2":
   version "1.2.2"
@@ -1311,12 +1322,17 @@
     sqlite3 "^5.1.6"
     tslib "^2.4.0"
 
-"@shopify/shopify-app-session-storage@^1.1.3":
-  version "1.1.3"
-  resolved "https://registry.yarnpkg.com/@shopify/shopify-app-session-storage/-/shopify-app-session-storage-1.1.3.tgz#ff636b0a854467a54f136f9fa2a393346bf5b776"
-  integrity sha512-NrGTxNv9qcH8a9cw2L4Byf9L+6kaGsIvmELkux74w+YnTCmKwVI9btm3wI3iqomJbic3ayGdFVWxNpNtxitiHw==
+"@shopify/shopify-app-session-storage@^2.1.1":
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/@shopify/shopify-app-session-storage/-/shopify-app-session-storage-2.1.1.tgz#ad6bfdfc02090ed26b906460a694d693b76b163e"
+  integrity sha512-Ot/v9TIXstyiFizVPRSAask8JFrX8FwAFhnceIjcG7Cs+G1zBedsVrz8RaNekOiWLSCXUjyjRVQ0ZA5D5KeZqw==
+
+"@shopify/storefront-api-client@^0.3.3":
+  version "0.3.3"
+  resolved "https://registry.yarnpkg.com/@shopify/storefront-api-client/-/storefront-api-client-0.3.3.tgz#e0f510354b81ed2bf015c59faef2aaf39e16ed0a"
+  integrity sha512-yoZul8r2mhb/XCDh55UxKNuo/PDB+bldTOt+rRz9uCKC9WkVQfGfMLwJhKb92i3CT/cxWNREPqEN5z1H+B9+IQ==
   dependencies:
-    tslib "^2.4.0"
+    "@shopify/graphql-client" "^0.10.3"
 
 "@shopify/stylelint-polaris@^9.0.2":
   version "9.0.3"
@@ -2348,10 +2364,10 @@ commondir@1.0.1:
   resolved "https://registry.yarnpkg.com/commondir/-/commondir-1.0.1.tgz#ddd800da0c66127393cca5950ea968a3aaf1253b"
   integrity sha512-W9pAhw0ja1Edb5GVdIF1mjZw/ASI0AlShXM83UUGe2DVr5TdAPEA1OA8m/g8zWp9x6On7gqufY+FatDbC3MDQg==
 
-compare-versions@^5.0.3:
-  version "5.0.3"
-  resolved "https://registry.yarnpkg.com/compare-versions/-/compare-versions-5.0.3.tgz#a9b34fea217472650ef4a2651d905f42c28ebfd7"
-  integrity sha512-4UZlZP8Z99MGEY+Ovg/uJxJuvoXuN4M6B3hKaiackiHrgzQFEe3diJi1mf1PNHbFujM7FvLrK2bpgIaImbtZ1A==
+compare-versions@^6.1.0:
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/compare-versions/-/compare-versions-6.1.0.tgz#3f2131e3ae93577df111dba133e6db876ffe127a"
+  integrity sha512-LNZQXhqUvqUTotpZ00qLSaify3b4VFD588aRr8MKFw4CMUr98ytzCW5wDH5qx/DEY5kCDXcbcRuCqL0szEf2tg==
 
 compress-commons@^4.1.0:
   version "4.1.1"
@@ -4096,10 +4112,10 @@ isarray@~1.0.0:
   resolved "https://registry.yarnpkg.com/isarray/-/isarray-1.0.0.tgz#bb935d48582cba168c06834957a54a3e07124f11"
   integrity sha512-VLghIWNM6ELQzo7zwmcg0NmTVyWKYjvIeM83yjp0wRDTmUnrM678fQbcKBo6n2CJEF0szoG//ytg+TKla89ALQ==
 
-isbot@^3.6.10:
-  version "3.6.10"
-  resolved "https://registry.yarnpkg.com/isbot/-/isbot-3.6.10.tgz#7b66334e81794f0461794debb567975cf08eaf2b"
-  integrity sha512-+I+2998oyP4oW9+OTQD8TS1r9P6wv10yejukj+Ksj3+UR5pUhsZN3f8W7ysq0p1qxpOVNbl5mCuv0bCaF8y5iQ==
+isbot@^4.4.0:
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/isbot/-/isbot-4.4.0.tgz#897ce9f2e498de6181027660ca80de8734d1ef81"
+  integrity sha512-8ZvOWUA68kyJO4hHJdWjyreq7TYNWTS9y15IzeqVdKxR9pPr3P/3r9AHcoIv9M0Rllkao5qWz2v1lmcyKIVCzQ==
 
 iserror@0.0.2, iserror@^0.0.2:
   version "0.0.2"
@@ -4138,10 +4154,10 @@ javy-cli@0.1.8:
     cachedir "^2.3.0"
     node-fetch "^3.2.10"
 
-jose@^4.9.1:
-  version "4.14.4"
-  resolved "https://registry.yarnpkg.com/jose/-/jose-4.14.4.tgz#59e09204e2670c3164ee24cbfe7115c6f8bff9ca"
-  integrity sha512-j8GhLiKmUAh+dsFXlX1aJCbt5KMibuKb+d7j1JaOJG6s2UjX1PQlW+OKB/sD4a/5ZYF4RcmYmLSndOoU3Lt/3g==
+jose@^5.2.2:
+  version "5.2.2"
+  resolved "https://registry.yarnpkg.com/jose/-/jose-5.2.2.tgz#b91170e9ba6dbe609b0c0a86568f9a1fbe4335c0"
+  integrity sha512-/WByRr4jDcsKlvMd1dRJnPfS1GVO3WuKyaurJ/vvXcOaUQO8rnNObCQMlv/5uCceVQIq5Q4WLF44ohsdiTohdg==
 
 js-sha3@0.8.0:
   version "0.8.0"
@@ -6086,10 +6102,17 @@ semver@^6.0.0, semver@^6.3.0:
   resolved "https://registry.yarnpkg.com/semver/-/semver-6.3.0.tgz#ee0a64c8af5e8ceea67687b133761e1becbd1d3d"
   integrity sha512-b39TBaTSfV6yBrapU89p5fKekE2m/NwnDocOVruQFS1/veMgdzuPcnOM34M6CwxW8jH/lxEa5rBoDeUwu5HHTw==
 
-semver@^7.3.5, semver@^7.3.7, semver@^7.3.8, semver@^7.5.1:
+semver@^7.3.5, semver@^7.3.7, semver@^7.3.8:
   version "7.5.1"
   resolved "https://registry.yarnpkg.com/semver/-/semver-7.5.1.tgz#c90c4d631cf74720e46b21c1d37ea07edfab91ec"
   integrity sha512-Wvss5ivl8TMRZXXESstBA4uR5iXgEN/VC5/sOcuXdVLzcdkz4HWetIoRfG5gb5X+ij/G9rw9YoGn3QoQ8OCSpw==
+  dependencies:
+    lru-cache "^6.0.0"
+
+semver@^7.6.0:
+  version "7.6.0"
+  resolved "https://registry.yarnpkg.com/semver/-/semver-7.6.0.tgz#1a46a4db4bffcccd97b743b5005c8325f23d4e2d"
+  integrity sha512-EnwXhrlwXMk9gKu5/flx5sv/an57AkRplG3hTK68W7FRDN+k+OWBj65M7719OkA82XLBxrcX0KSHj+X5COhOVg==
   dependencies:
     lru-cache "^6.0.0"
 

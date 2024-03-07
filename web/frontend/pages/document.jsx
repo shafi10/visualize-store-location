@@ -8,12 +8,31 @@ import {
   Button,
 } from "@shopify/polaris";
 import { useShopQuery } from "../hooks";
+import { useState } from "react";
 // import { NoteIcon } from "@shopify/polaris-icons";
 
 export default function Documentation() {
   const { data: shopData } = useShopQuery({
     url: "/api/shop",
   });
+
+  const [isCopied, setIsCopied] = useState(false);
+
+  const handleCopyClick = async () => {
+    try {
+      await navigator.clipboard.writeText(
+        `<script src="https://unpkg.com/leaflet/dist/leaflet.js" defer="defer"></script>`
+      );
+      setIsCopied(true);
+
+      // Reset the "copied" state after a brief period
+      setTimeout(() => {
+        setIsCopied(false);
+      }, 1500);
+    } catch (error) {
+      console.error("Unable to copy to clipboard:", error);
+    }
+  };
 
   return (
     <Page title="Documentation" fullWidth>
@@ -47,7 +66,11 @@ export default function Documentation() {
                   defer="defer"&gt;&lt;/script&gt;
                 </code>
               </div>
-
+              <div>
+                <button onClick={handleCopyClick}>
+                  {isCopied ? "Copied!" : "Copy to Clipboard"}
+                </button>
+              </div>
               <ExceptionList
                 items={[
                   {
@@ -60,7 +83,7 @@ export default function Documentation() {
                   },
                   {
                     description:
-                      "Inside the file search for </head>, the place the script and link above it.",
+                      "Inside the file search for </head>, the place the script above it.",
                   },
                 ]}
               />
