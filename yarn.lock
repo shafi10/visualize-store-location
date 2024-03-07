@@ -1282,7 +1282,7 @@
     react-fast-compare "^3.2.0"
     react-transition-group "^4.4.2"
 
-"@shopify/shopify-api@^9.3.2":
+"@shopify/shopify-api@^9.3.2", "@shopify/shopify-api@^9.5.0":
   version "9.5.0"
   resolved "https://registry.yarnpkg.com/@shopify/shopify-api/-/shopify-api-9.5.0.tgz#ec015dd672380d7c401c14b68eaa87975bd7cdd7"
   integrity sha512-DqfkeHJn3uch3ujSzku9R2Q3rsCtW7QHbyPHIahORQsQVKj+YAhkDjw1V+pMQRTbveL2HHW6D2r8GQvEPOU2Gw==
