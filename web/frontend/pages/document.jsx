@@ -42,7 +42,7 @@ export default function Documentation() {
             primary
             onClick={() => {
               const urlToOpen = `https://${shopData?.domain}/admin/themes/current/editor?
-            addAppBlockId=746b8e04-a3e1-466d-9892-b16e17e619b7/store-locator`;
+            addAppBlockId=b4b1d6cf-9574-497e-bd89-d6fd149881f9/store-locator`;
               window.open(urlToOpen, "_blank");
             }}
           >
