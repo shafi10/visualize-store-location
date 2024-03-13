@@ -52,8 +52,8 @@ export default function Documentation() {
         <Layout.Section>
           <Banner title="Important">
             <Text variant="headingLg" as="h5">
-              App blocks can be activate from the app home page or you can do it
-              by your own.
+              App blocks can be activate by clicking activate app block or you
+              can do it by your own.
             </Text>
             <br />
             <VerticalStack gap="3">

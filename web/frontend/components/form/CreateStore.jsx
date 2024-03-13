@@ -34,21 +34,31 @@ export function CreateStore() {
     }
   }, [statusId]);
 
+  function validateLatitude(latitude) {
+    // Latitude ranges from -90 to 90
+    return parseFloat(latitude) >= -90 && parseFloat(latitude) <= 90;
+  }
+
+  function validateLongitude(longitude) {
+    // Longitude ranges from -180 to 180
+    return parseFloat(longitude) >= -180 && parseFloat(longitude) <= 180;
+  }
+
   const handleSubmit = useCallback((obj) => {
-    if (obj?.title === "" || obj?.title?.length <= 3) {
+    if (obj?.title === "" || obj?.title?.length < 3) {
       return setErrors({
         ...errors,
         title: "Location title is required",
       });
-    } else if (obj?.latitude === "") {
+    } else if (obj?.latitude === "" || !validateLatitude(obj?.latitude)) {
       return setErrors({
         ...errors,
-        latitude: "Location latitude is required",
+        latitude: "Valid location latitude is required",
       });
-    } else if (obj?.longitude === "") {
+    } else if (obj?.longitude === "" || !validateLongitude(obj?.longitude)) {
       return setErrors({
         ...errors,
-        longitude: "Location longitude is required",
+        longitude: "Valid location longitude is required",
       });
     }
 
