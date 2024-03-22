@@ -1,0 +1,33 @@
+# Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
+
+name = "EasyfindStores- Store location"
+client_id = "3e866c0a83c667dc2a41f5938f39f7ba"
+application_url = "https://bachelor-delegation-syntax-adapted.trycloudflare.com"
+embedded = true
+
+[access_scopes]
+# Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
+scopes = "write_products, read_customers, read_themes"
+use_legacy_install_flow = true
+
+[auth]
+redirect_urls = [
+  "https://bachelor-delegation-syntax-adapted.trycloudflare.com/auth/callback",
+  "https://bachelor-delegation-syntax-adapted.trycloudflare.com/auth/shopify/callback",
+  "https://bachelor-delegation-syntax-adapted.trycloudflare.com/api/auth/callback"
+]
+
+[webhooks]
+api_version = "2024-01"
+
+  [webhooks.privacy_compliance]
+  customer_deletion_url = "https://easyfindstore.azurewebsites.net/api/webhooks"
+  customer_data_request_url = "https://easyfindstore.azurewebsites.net/api/webhooks"
+  shop_deletion_url = "https://easyfindstore.azurewebsites.net/api/webhooks"
+
+[pos]
+embedded = false
+
+[build]
+automatically_update_urls_on_dev = true
+dev_store_url = "bs-partner-program.myshopify.com"

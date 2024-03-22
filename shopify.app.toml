@@ -1,3 +1,24 @@
-# This file stores configurations for your Shopify app.
+# Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
 
+name = "app-development"
+client_id = "fddd9dc89a2aed1a91a8455b44b41c49"
+application_url = "https://guilty-possession-gold-program.trycloudflare.com"
+embedded = true
+
+[access_scopes]
+# Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
 scopes = "write_products, read_customers, read_themes"
+use_legacy_install_flow = true
+
+[auth]
+redirect_urls = [
+  "https://guilty-possession-gold-program.trycloudflare.com/auth/callback",
+  "https://guilty-possession-gold-program.trycloudflare.com/auth/shopify/callback",
+  "https://guilty-possession-gold-program.trycloudflare.com/api/auth/callback"
+]
+
+[webhooks]
+api_version = "2024-01"
+
+[pos]
+embedded = false

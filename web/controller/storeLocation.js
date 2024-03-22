@@ -72,6 +72,7 @@ export const updateStoreLocation = async (req, res) => {
 async function getLocationList(req, res) {
   const shopMetafield = await shopify.api.rest.Metafield.all({
     session: res.locals.shopify.session,
+    namespace: "bs_store_location",
   });
 
   const storeLocationMetadata = shopMetafield?.data?.find(
