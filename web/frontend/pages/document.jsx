@@ -83,7 +83,7 @@ export default function Documentation() {
                   },
                   {
                     description:
-                      "Inside the file search for </head>, the place the script above it.",
+                      "Inside the file search for </head>, then place the script above the </head>.",
                   },
                 ]}
               />
